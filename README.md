@@ -1,10 +1,24 @@
 # qiskit-examples
 
-Example notebooks using Qiskit and PySCF for quantum chemistry simulations:
+Example notebooks using Qiskit and PySCF for quantum chemistry simulations.
+The three notebooks form a deliberate progression in how much is built by
+hand versus handed off to a library:
 
-- `H2_VQE_example.ipynb` — H2 ground state via the Variational Quantum Eigensolver (VQE)
-- `H2_SQD_example.ipynb` — H2 via Sample-based Quantum Diagonalization (SQD) *(upcoming)*
-- `N2_SQD_example.ipynb` — N2 via Sample-based Quantum Diagonalization (SQD) *(upcoming)*
+- `H2_VQE_example.ipynb` — H2 ground state via the Variational Quantum
+  Eigensolver (VQE). Everything is built from scratch -- integrals, the
+  Jordan-Wigner qubit Hamiltonian, the UCCSD circuit, the optimization loop
+  -- with no `qiskit-nature` or `qiskit-addon-sqd`, purely to show what
+  those packages actually do under the hood.
+- `H2_SQD_example.ipynb` — H2 via Sample-based Quantum Diagonalization
+  (SQD). Uses `qiskit-nature` for the Hamiltonian and UCCSD ansatz, but the
+  SQD classical engine itself (determinant projection, configuration
+  recovery, the iterate-and-diagonalize loop) is still hand-built, since at
+  H2's small scale that engine is still the interesting part to see.
+- `N2_SQD_example.ipynb` — N2 via SQD, at a scale where hand-building stops
+  being illuminating and starts being impractical: `qiskit-nature` builds
+  the Hamiltonian and ansatz, and the real `qiskit-addon-sqd` package runs
+  the classical SQD engine. Also includes real IBM hardware execution and
+  `SamplerV2`-based error mitigation.
 
 ## Setup
 
